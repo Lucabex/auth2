@@ -11,7 +11,7 @@ using auth2.Data;
 namespace auth2.Migrations
 {
     [DbContext(typeof(AppdbContext))]
-    [Migration("20260824193521_initial")]
+    [Migration("20260824203458_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -26,21 +26,21 @@ namespace auth2.Migrations
 
             modelBuilder.Entity("auth2.Models.User", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("HashedPassword")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
