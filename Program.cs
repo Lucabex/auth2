@@ -1,8 +1,13 @@
+using auth2.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder  = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<AppdbContext>(option=>
+option.UseNpgsql(builder.Configuration.GetConnectionString("defaultConnection")));
 
 var app = builder.Build();
 
